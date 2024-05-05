@@ -21,8 +21,8 @@ function Balloon:inWindPath(fan)
 end
 
 function Balloon:update()
-    if math.abs(self.velocity.y) < 0.5 then
-        self.velocity.y = self.velocity.y + 0.01
-    end
+    -- if math.abs(self.velocity.y) < 0.5 then
+    --     self.velocity.y = self.velocity.y + 0.01
+    -- end
     self:moveBy(self.velocity.x, self.velocity.y)
 end

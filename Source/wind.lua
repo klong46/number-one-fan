@@ -8,14 +8,14 @@ local function getAnimationTable(direction, reversed)
     if reversed then
         dir = direction * -1
     end
-    if dir == DIRECTION.LEFT then
+    if dir == DIRECTION.LEFT or dir == DIRECTION.DOWN then
         return gfx.imagetable.new('img/wind/wind_animation_left')
-    elseif dir == DIRECTION.RIGHT then
+    elseif dir == DIRECTION.RIGHT or dir == DIRECTION.UP then
         return gfx.imagetable.new('img/wind/wind_animation_right')
     end
 end
 
-local DIRECTION_OFFSET = 80
+local DIRECTION_OFFSET = 100
 local X_OFFSET = 25
 local Y_OFFSET = -5
 local MOVEMENT_SPEED = 1.5
@@ -27,17 +27,21 @@ function Wind:init(x, y, direction, reversed)
     self.reversed = reversed
     local directionOffset = 0
     local xOffset = X_OFFSET
-    if direction == DIRECTION.LEFT then
+    if direction == DIRECTION.LEFT or direction == DIRECTION.DOWN then
         xOffset = -X_OFFSET
     end
     if reversed then
-        if direction == DIRECTION.LEFT then
+        if direction == DIRECTION.LEFT or direction == DIRECTION.DOWN then
             directionOffset = -DIRECTION_OFFSET
-        elseif direction == DIRECTION.RIGHT then
+        elseif direction == DIRECTION.RIGHT or direction == DIRECTION.UP then
             directionOffset = DIRECTION_OFFSET
         end
     end
-    self:moveTo(x+xOffset+directionOffset, y+Y_OFFSET)
+    if direction == DIRECTION.UP or direction == DIRECTION.DOWN then
+        self:moveTo(x+Y_OFFSET, y-xOffset-directionOffset)
+    else
+        self:moveTo(x+xOffset+directionOffset, y+Y_OFFSET)
+    end
     self.animation = gfx.animation.loop.new(50, animationTable, false)
     self:add()
 end
@@ -61,6 +65,20 @@ end
 function Wind:update()
     if self.animation:isValid() then
         local image = self.animation:image()
+        if self.direction == DIRECTION.UP then
+            if self.reversed then
+                image = image:rotatedImage(90)
+            else
+                image = image:rotatedImage(-90)
+            end
+        end
+        if self.direction == DIRECTION.DOWN then
+            if self.reversed then
+                image = image:rotatedImage(-90)
+            else
+                image = image:rotatedImage(90)
+            end
+        end
         self:setImage(image)
         self:move()
     else
