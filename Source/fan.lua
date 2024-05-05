@@ -73,7 +73,9 @@ function Fan:init(x, y, direction, selected)
     self.windPath = getWindPath(x, y, direction)
     self.spinning = false
     self.windTimeOffset = WIND_INTERVAL
-    self:setImage(self.animationTable:getImage(self.animationFrame))
+    if not selected then
+        self:unselect()
+    end
     self:add()
 end
 
@@ -84,6 +86,11 @@ function Fan:incrementAnimationFrame(increment)
     elseif self.animationFrame < 1 then
         self.animationFrame = LAST_FRAME
     end
+end
+
+function Fan:unselect()
+    self.selected = false
+    self:setImage(self.animationTable:getImage(self.animationFrame):fadedImage(0.5, gfx.image.kDitherTypeFloydSteinberg))
 end
 
 function Fan:makeWind()

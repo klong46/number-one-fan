@@ -15,7 +15,15 @@ local CRANK_SPEED = 7
 local gfx = playdate.graphics
 local slib = gfx.sprite
 
-Level()
+local level = Level()
+
+function playdate.leftButtonDown()
+    level:changeSelectedFan(-1)
+end
+
+function playdate.rightButtonDown()
+    level:changeSelectedFan(1)
+end
 
 function playdate.update()
     slib.update()

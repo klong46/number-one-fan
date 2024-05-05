@@ -16,9 +16,30 @@ function Level:init()
     self.selectedFan = Fan(380, 200, DIRECTION.LEFT, true)
     table.insert(self.fans, Fan(280, 220, DIRECTION.UP, false))
     table.insert(self.fans, self.selectedFan)
-    table.insert(self.fans, Fan(20, 30, DIRECTION.RIGHT, false))
+    -- table.insert(self.fans, Fan(20, 30, DIRECTION.RIGHT, false))
     -- table.insert(self.fans, Fan(360, 20, DIRECTION.DOWN))
     self:add()
+end
+
+function Level:getSelectedFanIndex()
+    for i, fan in ipairs(self.fans) do
+        if fan == self.selectedFan then
+            return i
+        end
+    end
+end
+
+function Level:changeSelectedFan(increment)
+    self.selectedFan:unselect()
+    local index = self:getSelectedFanIndex()
+    if increment == 1 and index == #self.fans then
+        self.selectedFan = self.fans[1]
+    elseif increment == -1 and index == 1 then
+        self.selectedFan = self.fans[#self.fans]
+    else
+        self.selectedFan = self.fans[index + increment]
+    end
+    self.selectedFan.selected = true
 end
 
 function Level:update()
@@ -54,5 +75,5 @@ function Level:update()
         elseif self.balloon.velocity.y < 0 then
             self.balloon.velocity.y = self.balloon.velocity.y + AIR_FRICTION
         end
-    end 
+    end
 end

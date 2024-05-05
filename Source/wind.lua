@@ -79,6 +79,16 @@ function Wind:update()
                 image = image:rotatedImage(90)
             end
         end
+        if self.direction == DIRECTION.RIGHT then
+            if self.reversed then
+                image = image:rotatedImage(180)
+            end
+        end
+        if self.direction == DIRECTION.LEFT then
+            if not self.reversed then
+                image = image:rotatedImage(180)
+            end
+        end
         self:setImage(image)
         self:move()
     else
