@@ -16,8 +16,10 @@ function Level:init()
     self.selectedFan = Fan(380, 200, DIRECTION.LEFT, true)
     table.insert(self.fans, Fan(280, 220, DIRECTION.UP, false))
     table.insert(self.fans, self.selectedFan)
-    -- table.insert(self.fans, Fan(20, 30, DIRECTION.RIGHT, false))
-    -- table.insert(self.fans, Fan(360, 20, DIRECTION.DOWN))
+    table.insert(self.fans, Fan(20, 30, DIRECTION.RIGHT, false))
+    table.insert(self.fans, Fan(360, 20, DIRECTION.DOWN, false))
+    self.spikes = {}
+    SpikeStrip(250, 220, DIRECTION.RIGHT, 5)
     self:add()
 end
 
@@ -43,7 +45,9 @@ function Level:changeSelectedFan(increment)
 end
 
 function Level:update()
-    if self.selectedFan.spinning and self.balloon:inWindPath(self.selectedFan) then
+    if not self.balloon.popped and
+           self.selectedFan.spinning and
+           self.balloon:inWindPath(self.selectedFan) then
         local fanSpeed = math.floor(playdate.getCrankChange()) * FAN_STRENGTH
         if self.selectedFan.direction == DIRECTION.LEFT or self.selectedFan.direction == DIRECTION.RIGHT then
             if self.selectedFan.direction == DIRECTION.LEFT then
@@ -61,14 +65,14 @@ function Level:update()
             end
         end
     else
-        if math.abs(self.balloon.velocity.x) < 0.1 then
+        if math.abs(self.balloon.velocity.x) < 0.05 then
             self.balloon.velocity.x = 0
         elseif self.balloon.velocity.x > 0 then
             self.balloon.velocity.x = self.balloon.velocity.x - AIR_FRICTION
         elseif self.balloon.velocity.x < 0 then
             self.balloon.velocity.x = self.balloon.velocity.x + AIR_FRICTION
         end
-        if math.abs(self.balloon.velocity.y) < 0.1 then
+        if math.abs(self.balloon.velocity.y) < 0.05 then
             self.balloon.velocity.y = 0
         elseif self.balloon.velocity.y > 0 then
             self.balloon.velocity.y = self.balloon.velocity.y - AIR_FRICTION
@@ -77,3 +81,12 @@ function Level:update()
         end
     end
 end
+
+-- TODO:
+-- test on device
+-- JSON level editor
+-- add spikes
+-- add context
+-- card image
+-- add sound
+-- finish animation

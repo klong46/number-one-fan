@@ -7,8 +7,11 @@ import "balloon"
 import "fan"
 import "wind"
 import "level"
+import "spike"
+import "spikeStrip"
 
 DIRECTION = {LEFT = -1, RIGHT = 1, UP = 2, DOWN = -2}
+SPIKE_TAG = 1
 
 Ticks = 0
 local CRANK_SPEED = 7
@@ -23,6 +26,10 @@ end
 
 function playdate.rightButtonDown()
     level:changeSelectedFan(1)
+end
+
+function playdate.AButtonDown()
+    level.balloon.popped = true
 end
 
 function playdate.update()
