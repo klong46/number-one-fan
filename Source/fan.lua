@@ -8,7 +8,7 @@ local WIND_INTERVAL = 20
 local TOP_OFFSET = 18
 local BOTTOM_OFFSET = 18
 local LEFT_OFFSET = 14
-local RIGHT_OFFSET = 150
+local RIGHT_OFFSET = 180
 local RANDOM_WIND_OFFSET = 8
 
 local function getAnimationTable(direction)
@@ -55,8 +55,8 @@ local function getWindPath(x, y, direction)
             }
     end
     return {
-        top = y - rightBorder,
-        bottom = y + leftBorder,
+        top = y + leftBorder,
+        bottom = y - rightBorder,
         left = x - topBorder,
         right = x + bottomBorder
     }
@@ -73,6 +73,11 @@ function Fan:init(x, y, direction, selected)
     self.windPath = getWindPath(x, y, direction)
     self.spinning = false
     self.windTimeOffset = WIND_INTERVAL
+    if direction == DIRECTION.UP or direction == DIRECTION.DOWN then
+        self:setCollideRect(0, 0, 31, 17)
+    else
+        self:setCollideRect(0, 0, 17, 31)
+    end
     if not selected then
         self:unselect()
     end
@@ -90,7 +95,7 @@ end
 
 function Fan:unselect()
     self.selected = false
-    self:setImage(self.animationTable:getImage(self.animationFrame):fadedImage(0.5, gfx.image.kDitherTypeFloydSteinberg))
+    self:setImage(self.animationTable:getImage(self.animationFrame):fadedImage(0.7, gfx.image.kDitherTypeScreen))
 end
 
 function Fan:makeWind()

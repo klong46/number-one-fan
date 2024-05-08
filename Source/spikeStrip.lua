@@ -6,16 +6,14 @@ class('SpikeStrip').extends(slib)
 function SpikeStrip:init(x, y, direction, length)
     SpikeStrip.super.init(self)
     self.spikes = {}
-    for i=1, length do
+    y = y + 5
+    x = x + 5
+    for i=0, length-1 do
         local position = {x = x, y = y}
-        if direction == DIRECTION.LEFT then
+        if direction == DIRECTION.LEFT or direction == DIRECTION.RIGHT then
             position.y = y + i * 10
-        elseif direction == DIRECTION.RIGHT then
-            position.y = y - i * 10
-        elseif direction == DIRECTION.UP then
+        elseif direction == DIRECTION.UP or direction == DIRECTION.DOWN then
             position.x = x + i * 10
-        elseif direction == DIRECTION.DOWN then
-            position.x = x - i * 10
         end
         table.insert(self.spikes, Spike(position.x, position.y, direction))
     end

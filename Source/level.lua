@@ -4,22 +4,23 @@ local slib = gfx.sprite
 class('Level').extends(slib)
 
 local FAN_STRENGTH_CONVERSION = 100
-local REAL_FAN_STRENGTH = 0.2
+local REAL_FAN_STRENGTH = 0.7
 local FAN_STRENGTH = REAL_FAN_STRENGTH/FAN_STRENGTH_CONVERSION
 local AIR_FRICTION = 0.1
-local BALLOON_MAX_SPEED = 2
 
 function Level:init()
     Level.super.init(self)
-    self.balloon = Balloon(300, 200)
+    Background()
+    ScreenBorder()
+    -- self.balloon = Balloon(23, 162)
+    self.balloon = Balloon()
     self.fans = {}
-    self.selectedFan = Fan(380, 200, DIRECTION.LEFT, true)
-    table.insert(self.fans, Fan(280, 220, DIRECTION.UP, false))
+    self.selectedFan = Fan(20, 9, DIRECTION.DOWN, true)
+    table.insert(self.fans, Fan(150, 80, DIRECTION.LEFT, false))
     table.insert(self.fans, self.selectedFan)
-    table.insert(self.fans, Fan(20, 30, DIRECTION.RIGHT, false))
-    table.insert(self.fans, Fan(360, 20, DIRECTION.DOWN, false))
-    self.spikes = {}
-    SpikeStrip(250, 220, DIRECTION.RIGHT, 5)
+    SpikeStrip(80, 0, DIRECTION.LEFT, 24)
+    Boy()
+    Cowboy()
     self:add()
 end
 
@@ -53,14 +54,14 @@ function Level:update()
             if self.selectedFan.direction == DIRECTION.LEFT then
                 fanSpeed = fanSpeed * -1
             end
-            if math.abs(self.balloon.velocity.x + fanSpeed) < BALLOON_MAX_SPEED then
+            if math.abs(self.balloon.velocity.x + fanSpeed) < MAX_BALLOON_SPEED then
                 self.balloon.velocity.x = self.balloon.velocity.x + fanSpeed
             end
         else
             if self.selectedFan.direction == DIRECTION.DOWN then
                 fanSpeed = fanSpeed * -1
             end
-            if math.abs(self.balloon.velocity.y - fanSpeed) < BALLOON_MAX_SPEED then 
+            if math.abs(self.balloon.velocity.y - fanSpeed) < MAX_BALLOON_SPEED then 
                 self.balloon.velocity.y = self.balloon.velocity.y - fanSpeed
             end
         end
@@ -85,8 +86,3 @@ end
 -- TODO:
 -- test on device
 -- JSON level editor
--- add spikes
--- add context
--- card image
--- add sound
--- finish animation
