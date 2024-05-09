@@ -10,8 +10,7 @@ local popSound = playdate.sound.sampleplayer.new('snd/balloon_pop')
 function Balloon:init()
     Balloon.super.init(self)
     self:setImage(image)
-    -- self:moveTo(23, 162)
-    self:moveTo(360, 140)
+    self:moveTo(23, 162)
     self:setCollideRect(0, 0, self:getSize())
     self.velocity = {x = 0, y = 0}
     self.animation = gfx.animation.loop.new(70, animationTable, false)
@@ -29,9 +28,9 @@ function Balloon:inWindPath(fan)
 end
 
 function Balloon:update()
-    if math.abs(self.velocity.y) < MAX_BALLOON_SPEED then
-        self.velocity.y = self.velocity.y + 0.15
-    end
+    -- if math.abs(self.velocity.y) < MAX_BALLOON_SPEED then
+    --     self.velocity.y = self.velocity.y + 0.15
+    -- end
     if self.popped then
         self.animation.paused = false
         self:setImage(self.animation:image())

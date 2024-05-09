@@ -8,20 +8,26 @@ local REAL_FAN_STRENGTH = 0.7
 local FAN_STRENGTH = REAL_FAN_STRENGTH/FAN_STRENGTH_CONVERSION
 local AIR_FRICTION = 0.1
 
-function Level:init()
+function Level:init(levelNum)
     Level.super.init(self)
     Background()
     ScreenBorder()
-    -- self.balloon = Balloon(23, 162)
     self.balloon = Balloon()
     self.fans = {}
+    self.levelData = playdate.datastore.read("levels/"..levelNum)
     self.selectedFan = Fan(20, 9, DIRECTION.DOWN, true)
     table.insert(self.fans, Fan(150, 80, DIRECTION.LEFT, false))
     table.insert(self.fans, self.selectedFan)
-    SpikeStrip(80, 0, DIRECTION.LEFT, 24)
+    self:addSpikestrips()
     Boy()
     Cowboy()
     self:add()
+end
+
+function Level:addSpikestrips()
+    for i, strip in ipairs(self.levelData.spikeStrips) do
+        SpikeStrip(strip.x, strip.y, strip.direction, strip.length)
+    end
 end
 
 function Level:getSelectedFanIndex()
@@ -61,7 +67,7 @@ function Level:update()
             if self.selectedFan.direction == DIRECTION.DOWN then
                 fanSpeed = fanSpeed * -1
             end
-            if math.abs(self.balloon.velocity.y - fanSpeed) < MAX_BALLOON_SPEED then 
+            if math.abs(self.balloon.velocity.y - fanSpeed) < MAX_BALLOON_SPEED then
                 self.balloon.velocity.y = self.balloon.velocity.y - fanSpeed
             end
         end

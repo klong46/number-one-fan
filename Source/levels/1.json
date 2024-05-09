@@ -1,0 +1,10 @@
+{
+    "spikeStrips": [
+        {
+            "x": 120,
+            "y": 0,
+            "length": 24,
+            "direction": -1
+        }
+    ]
+}
