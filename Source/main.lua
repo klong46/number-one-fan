@@ -29,7 +29,7 @@ local backgroundMusic = playdate.sound.fileplayer.new('snd/jazz_music')
 backgroundMusic:play(0)
 
 Ticks = 0
-OnTutorial = true
+local onTutorial = true
 local pdMenu = playdate.getSystemMenu()
 local CRANK_SPEED = 10
 local gfx = playdate.graphics
@@ -45,21 +45,23 @@ function playdate.rightButtonDown()
 end
 
 function playdate.AButtonDown()
-    if OnTutorial then
+    if onTutorial then
         if tutorial.screen == 1 then
             tutorial:next()
         else
             slib.removeAll()
             LevelController = LevelManager()
+            pdMenu:removeAllMenuItems()
             RestartMenuItem = pdMenu:addMenuItem("restart", function()
                 LevelController:resetLevel()
             end)
+            onTutorial = false
         end
     end
 end
 
 function playdate.BButtonDown()
-    if OnTutorial then
+    if onTutorial then
         tutorial:back()
     end
 end

@@ -23,7 +23,6 @@ function Tutorial:next()
         self:setImage(SCREEN_2)
         self.screen = 2
     elseif self.screen == 2 then
-        OnTutorial = false
         LevelController = LevelManager()
     end
 end
