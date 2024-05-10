@@ -16,6 +16,10 @@ end
 
 function LevelManager:nextLevel()
     slib:removeAll()
-    self.levelNum = self.levelNum + 1
+    if self.levelNum == NUM_LEVELS then
+        self.levelNum = 1
+    else
+        self.levelNum = self.levelNum + 1
+    end
     self.level = Level(self.levelNum)
 end

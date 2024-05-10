@@ -15,10 +15,11 @@ function Level:init(levelNum)
     self.balloon = Balloon()
     self.fans = {}
     self.levelData = playdate.datastore.read("levels/"..levelNum)
-    self.selectedFan = Fan(20, 9, DIRECTION.DOWN, true)
-    table.insert(self.fans, Fan(150, 80, DIRECTION.LEFT, false))
-    table.insert(self.fans, self.selectedFan)
+    -- self.selectedFan = Fan(20, 9, DIRECTION.DOWN, true)
+    -- table.insert(self.fans, Fan(150, 80, DIRECTION.LEFT, false))
+    -- table.insert(self.fans, self.selectedFan)
     self:addSpikestrips()
+    self:addFans()
     Boy()
     Cowboy()
     self:add()
@@ -27,6 +28,16 @@ end
 function Level:addSpikestrips()
     for i, strip in ipairs(self.levelData.spikeStrips) do
         SpikeStrip(strip.x, strip.y, strip.direction, strip.length)
+    end
+end
+
+function Level:addFans()
+    for i, fan in ipairs(self.levelData.fans) do
+        local currentFan = Fan(fan.x, fan.y, fan.direction, fan.selected)
+        table.insert(self.fans, currentFan)
+        if fan.selected then
+            self.selectedFan = currentFan
+        end
     end
 end
 

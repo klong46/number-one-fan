@@ -22,6 +22,8 @@ function Heart:update()
         self:moveTo(self.x - self.movementAnim:currentValue(), self.y - self.movementAnim:currentValue())
         local scaleX, scaleY = self:getScale()
         self:setScale(scaleX + self.movementAnim:currentValue() / 10, scaleY + self.movementAnim:currentValue() / 10)
+    else
+        LevelController:nextLevel()
     end
 
 end

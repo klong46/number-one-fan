@@ -5,8 +5,8 @@ class('Fan').extends(slib)
 
 local LAST_FRAME = 6
 local WIND_INTERVAL = 20
-local TOP_OFFSET = 18
-local BOTTOM_OFFSET = 18
+local TOP_OFFSET = 28
+local BOTTOM_OFFSET = 28
 local LEFT_OFFSET = 14
 local RIGHT_OFFSET = 180
 local RANDOM_WIND_OFFSET = 8
@@ -95,7 +95,7 @@ end
 
 function Fan:unselect()
     self.selected = false
-    self:setImage(self.animationTable:getImage(self.animationFrame):fadedImage(0.7, gfx.image.kDitherTypeScreen))
+    self:setImage(self.animationTable:getImage(self.animationFrame):fadedImage(0.4, gfx.image.kDitherTypeBurkes))
 end
 
 function Fan:makeWind()

@@ -1,10 +1,118 @@
 {
     "spikeStrips": [
         {
-            "x": 120,
+            "x": 70,
+            "y": 100,
+            "length": 14,
+            "direction": -1
+        },
+        {
+            "x": 80,
+            "y": 100,
+            "length": 14,
+            "direction": 1
+        },
+        {
+            "x": 70,
             "y": 0,
+            "length": 5,
+            "direction": -1
+        },
+        {
+            "x": 80,
+            "y": 0,
+            "length": 5,
+            "direction": 1
+        },
+        {
+            "x": 80,
+            "y": 230,
             "length": 24,
+            "direction": 2
+        },
+
+        {
+            "x": 320,
+            "y": 120,
+            "length": 12,
+            "direction": 1
+        },
+        {
+            "x": 310,
+            "y": 120,
+            "length": 12,
+            "direction": -1
+        },
+        {
+            "x": 320,
+            "y": 0,
+            "length": 7,
+            "direction": 1
+        },
+        {
+            "x": 310,
+            "y": 0,
+            "length": 7,
             "direction": -1
         }
+        ,
+        {
+            "x": 210,
+            "y": 0,
+            "length": 15,
+            "direction": 1
+        },
+        {
+            "x": 200,
+            "y": 0,
+            "length": 15,
+            "direction": -1
+        }
+    ],
+    "fans": [
+        {
+            "x": 20,
+            "y": 9,
+            "direction": -2,
+            "selected": true
+        },
+        {
+            "x": 170,
+            "y": 80,
+            "direction": -1,
+            "selected": false
+        },
+        {
+            "x": 135,
+            "y": 9,
+            "direction": -2,
+            "selected": false
+        },
+        {
+            "x": 100,
+            "y": 180,
+            "direction": 1,
+            "selected": false
+        },
+        {
+            "x": 290,
+            "y": 220,
+            "direction": 2,
+            "selected": false
+        },
+        {
+            "x": 260,
+            "y": 100,
+            "direction": 1,
+            "selected": false
+        }
+        ,
+        {
+            "x": 360,
+            "y": 9,
+            "direction": -2,
+            "selected": false
+        }
+        
     ]
 }
