@@ -16,6 +16,8 @@ import "screenBorder"
 import "cowboy"
 import "levelManager"
 import "heart"
+import "tutorial"
+import "continueButton"
 
 DIRECTION = {LEFT = -1, RIGHT = 1, UP = 2, DOWN = -2}
 SPIKE_TAG = 1
@@ -28,16 +30,12 @@ backgroundMusic:play(0)
 
 
 Ticks = 0
+OnTutorial = true
 local pdMenu = playdate.getSystemMenu()
 local CRANK_SPEED = 10
 local gfx = playdate.graphics
 local slib = gfx.sprite
-
-LevelController = LevelManager()
-
-RestartMenuItem = pdMenu:addMenuItem("restart", function()
-    LevelController:resetLevel()
-end)
+local tutorial = Tutorial()
 
 function playdate.leftButtonDown()
     LevelController.level:changeSelectedFan(-1)
@@ -48,7 +46,23 @@ function playdate.rightButtonDown()
 end
 
 function playdate.AButtonDown()
-    LevelController.level.balloon.popped = true
+    if OnTutorial then
+        if tutorial.screen == 1 then
+            tutorial:next()
+        else
+            slib.removeAll()
+            LevelController = LevelManager()
+            RestartMenuItem = pdMenu:addMenuItem("restart", function()
+                LevelController:resetLevel()
+            end)
+        end
+    end
+end
+
+function playdate.BButtonDown()
+    if OnTutorial then
+        tutorial:back()
+    end
 end
 
 function playdate.update()
