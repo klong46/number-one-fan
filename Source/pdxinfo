@@ -1,7 +1,7 @@
-name=Template
-author=You, Inc.
-description=A basic game template.
-bundleID=com.yourcompany.TemplateGame
+name=number-one-fan
+author=Kyle Long
+description=give your friend a balloon.
+bundleID=com.klong46.number-one-fan
 version=1.0
-buildNumber=100
+buildNumber=1
 imagePath=SystemAssets

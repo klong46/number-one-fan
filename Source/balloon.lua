@@ -28,9 +28,6 @@ function Balloon:inWindPath(fan)
 end
 
 function Balloon:update()
-    -- if math.abs(self.velocity.y) < MAX_BALLOON_SPEED then
-    --     self.velocity.y = self.velocity.y + 0.15
-    -- end
     if self.popped then
         self.animation.paused = false
         self:setImage(self.animation:image())

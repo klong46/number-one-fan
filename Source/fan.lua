@@ -5,8 +5,8 @@ class('Fan').extends(slib)
 
 local LAST_FRAME = 6
 local WIND_INTERVAL = 20
-local TOP_OFFSET = 28
-local BOTTOM_OFFSET = 28
+local TOP_OFFSET = 26
+local BOTTOM_OFFSET = TOP_OFFSET
 local LEFT_OFFSET = 14
 local RIGHT_OFFSET = 180
 local RANDOM_WIND_OFFSET = 8

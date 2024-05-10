@@ -1,0 +1,80 @@
+{
+    "spikeStrips": [
+        {
+            "x": 80,
+            "y": 200,
+            "length": 24,
+            "direction": 2
+        },
+        {
+            "x": 0,
+            "y": 120,
+            "length": 10,
+            "direction": -2
+        }
+        ,
+        {
+            "x": 100,
+            "y": 0,
+            "length": 12,
+            "direction": 1
+        },
+        {
+            "x": 220,
+            "y": 100,
+            "length": 11,
+            "direction": -2
+        }
+        ,
+        {
+            "x": 220,
+            "y": 90,
+            "length": 11,
+            "direction": 2
+        },
+        {
+            "x": 200,
+            "y": 20,
+            "length": 13,
+            "direction": -2
+        }
+        ,
+        {
+            "x": 200,
+            "y": 10,
+            "length": 13,
+            "direction": 2
+        }
+    ],
+    "fans": [
+        {
+            "x": 190,
+            "y": 160,
+            "direction": -1,
+            "selected": true
+        },{
+            "x": 160,
+            "y": 9,
+            "direction": -2,
+            "selected": false
+        },{
+            "x": 210,
+            "y": 110,
+            "direction": -1,
+            "selected": false
+        }
+        ,{
+            "x": 391,
+            "y": 65,
+            "direction": -1,
+            "selected": false
+        }
+        ,{
+            "x": 360,
+            "y": 9,
+            "direction": -2,
+            "selected": false
+        }
+
+    ]
+}

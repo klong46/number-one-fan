@@ -23,11 +23,10 @@ DIRECTION = {LEFT = -1, RIGHT = 1, UP = 2, DOWN = -2}
 SPIKE_TAG = 1
 COWBOY_TAG = 2
 MAX_BALLOON_SPEED = 3
-NUM_LEVELS = 1
+NUM_LEVELS = 2
 
 local backgroundMusic = playdate.sound.fileplayer.new('snd/jazz_music')
 backgroundMusic:play(0)
-
 
 Ticks = 0
 OnTutorial = true
