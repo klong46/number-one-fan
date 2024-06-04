@@ -6,7 +6,7 @@ class('LevelManager').extends(slib)
 function LevelManager:init()
     LevelManager.super.init(self)
     self.levelNum = 1
-    self.level = Level(1)
+    self.level = Level(self.levelNum)
 end
 
 function LevelManager:resetLevel()
